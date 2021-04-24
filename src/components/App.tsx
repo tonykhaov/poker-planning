@@ -1,15 +1,12 @@
 import * as React from 'react'
 import firebase from 'firebase/app'
 import { useAuthState } from 'react-firebase-hooks/auth'
-import { useDocumentData } from 'react-firebase-hooks/firestore'
+import { useCollection } from 'react-firebase-hooks/firestore'
 
 function App() {
   const [user, loading, error] = useAuthState(firebase.auth())
-  const [value] = useDocumentData(firebase.firestore().doc('users/XdcaOF0moHeAyCGJs8g9'), {
-    snapshotListenOptions: { includeMetadataChanges: true },
-  })
-  const username = value?.[user?.uid ?? '']
-  console.log(user)
+  const [value, ...coll] = useCollection(firebase.firestore().collection('usernames'))
+
   return (
     <div>
       <h1 className="text-2xl text-center uppercase">Poker planning</h1>
@@ -22,7 +19,6 @@ function App() {
 
       <div>
         <p>login</p>
-        {username ? username : null}
         <button
           onClick={() =>
             firebase
@@ -32,7 +28,7 @@ function App() {
                 if (!res.user?.uid) return
                 firebase
                   .firestore()
-                  .collection('users')
+                  .collection('usernames')
                   .add({
                     [res.user.uid]: 'luc',
                   })
