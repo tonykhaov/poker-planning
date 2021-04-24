@@ -5,19 +5,16 @@ import 'firebase/auth'
 import 'firebase/firestore'
 import 'firebase/database'
 
-const config = {
-  apiKey: 'AIzaSyA_3pH_mSGLlruZhc935W_usggb7I0otwo',
-  authDomain: 'poker-planning-5c616.firebaseapp.com',
-  projectId: 'poker-planning-5c616',
-  storageBucket: 'poker-planning-5c616.appspot.com',
-  messagingSenderId: '251954642401',
-  appId: '1:251954642401:web:882cfd8616101926df26a0',
-  databaseURL: 'https://poker-planning-5c616-default-rtdb.europe-west1.firebasedatabase.app/',
+const firebaseConfig = {
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  databaseURL: import.meta.env.VITE_FIREBASE_DATABASE_URL,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
 }
-
-firebase.initializeApp({
-  ...config,
-})
+firebase.initializeApp(firebaseConfig)
 
 const auth = firebase.auth()
 const database = firebase.database()
