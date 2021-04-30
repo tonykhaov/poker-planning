@@ -22,6 +22,8 @@ const firestore = firebase.firestore()
 
 const client = new QueryClient()
 
-export default function AppProviders({ children }: any) {
+const AppProviders: React.FC = ({ children }) => {
   return <QueryClientProvider client={client}>{children}</QueryClientProvider>
 }
+
+export default AppProviders
