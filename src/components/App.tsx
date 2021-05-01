@@ -48,7 +48,7 @@ interface UsernameFormElement extends HTMLFormElement {
 }
 
 function TemporaryAppComponent() {
-  const [user, loading, error] = useAuthState(firebase.auth())
+  const [user] = useAuthState(firebase.auth())
   const userID = user?.uid ?? ''
   const usersRef = firebase.firestore().collection('users')
   const [collection] = useCollection(usersRef.where('uid', '==', userID))

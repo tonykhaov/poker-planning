@@ -16,10 +16,6 @@ const firebaseConfig = {
 }
 firebase.initializeApp(firebaseConfig)
 
-const auth = firebase.auth()
-const database = firebase.database()
-const firestore = firebase.firestore()
-
 const client = new QueryClient()
 
 const AppProviders: React.FC = ({ children }) => {
